@@ -1,1 +1,1 @@
-# Djnago API
+# Django API
