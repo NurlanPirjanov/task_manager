@@ -5,14 +5,14 @@ from ckeditor.fields import RichTextField
 from accounts.models import CustomUser
 from accounts.models import RoleUser
 class TaskManager(models.Model):
-    role_user = models.ForeignKey(RoleUser, on_delete=models.CASCADE)
+    role_user = models.ForeignKey(RoleUser, on_delete=models.CASCADE, verbose_name="Topshiriq kimlar uchun?")
     author = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
-        verbose_name='Kim tomanidan topchiriq berilishi'
+        verbose_name='Kim tomanidan Topshiriq berilishi'
     )
     title = models.CharField(max_length=150, verbose_name='Sarlavha')
-    body = RichTextField(verbose_name='Topchiriq haqida to`liq ma`lumot')
+    body = RichTextField(verbose_name='Topshiriq haqida to`liq ma`lumot')
     file = models.FileField(upload_to='files/', null=True)
     ot_date = models.DateTimeField(auto_now_add=True)
     do_date = models.DateTimeField(verbose_name='Tugatish vaqti')
@@ -28,8 +28,8 @@ class TaskManager(models.Model):
     def get_absolute_url(self):
         return reverse('task_detail', args=[str(self.id)])
     class Meta:
-        verbose_name = 'Topchiriq'
-        verbose_name_plural = 'Topchiriqlar'
+        verbose_name = 'Topshiriq'
+        verbose_name_plural = 'Topshiriqlar'
 
 class Comment(models.Model):
     task = models.ForeignKey(TaskManager, on_delete=models.CASCADE, related_name='comments')
