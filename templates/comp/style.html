@@ -1,0 +1,34 @@
+<style>
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'left left middle middle middle middle middle middle middle middle middle'
+  /* grid-column-gap: 10px; - if you want gap between the columns */
+}
+
+
+/* Style the left column */
+.left {
+  grid-area: left;
+}
+
+/* Style the middle column */
+.middle {
+  grid-area: middle;
+}
+
+/* Style the right column */
+.right {
+  grid-area: right;
+}
+
+@media (max-width: 800px) {
+  .grid-container  {
+    display: block;
+    grid-template-areas:
+      'left left left left left left left left left left left'
+      'middle middle middle middle middle middle middle middle middle middle middle'
+  }
+}
+</style>

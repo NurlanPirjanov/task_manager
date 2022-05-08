@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Izoh qo`shish{% endblock title %}
+
+
+{% block content %}
+
+    <center><img src="https://img.icons8.com/clouds/100/000000/checklist.png"/><h1>Izoh qo`shish</h1></center>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.media }}
+        {{ form }}
+        <button class="btn btn-success ml-2" type="submit">Saqlash</button>
+    </form>
+
+{% endblock content %}

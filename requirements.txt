@@ -1,0 +1,6 @@
+pip3 install pipenv
+pip3 install django==4
+pip3 install pillow
+pip3 install django-ckeditor
+pip3 install whitenoise
+pip3 install django-crispy-forms
