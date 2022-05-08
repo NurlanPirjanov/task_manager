@@ -1,10 +1,9 @@
-from .models import HomeManager
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic.base import TemplateView
 from accounts.models import CustomUser
 from task.models import TaskManager
-class HomeListView(LoginRequiredMixin, ListView):
-    model = HomeManager
+class HomeListView(LoginRequiredMixin, TemplateView):
+
     template_name = 'home.html'
     def get_context_data(self, *args, **kwargs):
         context = super(HomeListView, self).get_context_data()

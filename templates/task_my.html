@@ -26,7 +26,7 @@
   </ol>
 </nav>
 
-<div class="relative overflow-x-auto shadow-sm sm:rounded-xl">
+<div class="relative border-t border-blue-400 overflow-x-auto shadow-sm sm:rounded-xl">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -37,13 +37,13 @@
                     Avtor
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Dedline
+                    Berilgan vaqti
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Dedline
+                    Tugash vaqti
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Dedline
+                    Kim ushun
                 </th>
             </tr>
         </thead>
@@ -51,20 +51,20 @@
     {% for task in object_list %}
         {% if task.author.id == request.user.id %}
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                <th scope="row" class="px-6 py-2 font-medium text-blue-900 dark:text-white whitespace-nowrap">
                     <a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a>
                 </th>
                 <td class="px-6 py-2">
-                    {{ task.author.first_name | title }} {{ task.author.last_name | title }}
+                    {{ task.author.role_user }} - {{ task.author.first_name | title }} {{ task.author.last_name | title }}
+                </td>
+                <td class="px-6 py-2">
+                    {{ task.ot_date|date:"d M Y" }}-yil {{ task.do_date|time:"H:i" }}
                 </td>
                 <td class="px-6 py-2">
                     {{ task.do_date|date:"d M Y" }}-yil {{ task.do_date|time:"H:i" }}
                 </td>
                 <td class="px-6 py-2">
-                    {{ task.do_date|date:"d M Y" }}-yil {{ task.do_date|time:"H:i" }}
-                </td>
-                <td class="px-6 py-2">
-                    {{ task.do_date|date:"d M Y" }}-yil {{ task.do_date|time:"H:i" }}
+                    {{ task.role_user }}
                 </td>
             </tr>
             

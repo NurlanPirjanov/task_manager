@@ -16,21 +16,17 @@
         <script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
         {% include 'comp/style.html' %}
 </head>
-<body class=" bg-gray-50 min-w-full dark:bg-gray-600">
-  <div class="h-fit  relative ">
+<body class="h-screen  bg-gray-50 min-w-full dark:bg-gray-600 ">
+  <div class="h-fit relative ">
   {% include 'comp/menu.html' %}
 
     <div class="sm:mx-0 sm:my-2 md:mx-1 lg:py-2 xl:py-3 2xl:py-3  ">
       {% block content %}
       {% endblock content %}
     </div>
-
-    <div class="h-[2rem]">
-      
-    </div>
-    <div class="absolute inset-x-0  ">
+  </div>
+  <div class="inset-x-0 bottom-0  ">
     {% include 'comp/footer.html' %}
-    </div>
   </div>
 </body>
 </html>

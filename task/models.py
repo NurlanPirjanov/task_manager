@@ -14,7 +14,7 @@ class TaskManager(models.Model):
     title = models.CharField(max_length=150, verbose_name='Sarlavha')
     body = RichTextField(verbose_name='Topshiriq haqida to`liq ma`lumot')
     file = models.FileField(upload_to='files/', null=True)
-    ot_date = models.DateTimeField(auto_now_add=True)
+    ot_date = models.DateTimeField(auto_now_add=True, verbose_name="Berilgan vaqti")
     do_date = models.DateTimeField(verbose_name='Tugatish vaqti')
     task_qabul = models.ManyToManyField(
         get_user_model(),
@@ -28,8 +28,8 @@ class TaskManager(models.Model):
     def get_absolute_url(self):
         return reverse('task_detail', args=[str(self.id)])
     class Meta:
-        verbose_name = 'Topshiriq'
-        verbose_name_plural = 'Topshiriqlar'
+        verbose_name = 'Topshiriq '
+        verbose_name_plural = 'Topshiriqlar '
 
 class Comment(models.Model):
     task = models.ForeignKey(TaskManager, on_delete=models.CASCADE, related_name='comments')
