@@ -1,1 +1,1 @@
-# Django API
+# Django TASK Manager
