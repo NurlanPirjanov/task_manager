@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from .models import *
 from django.http import HttpResponseRedirect
 from .forms import *
-
+from django.contrib.messages.views import SuccessMessageMixin
 class TaskMyListView(LoginRequiredMixin, ListView):
     model = TaskManager
     template_name = 'task_my.html'
@@ -23,12 +23,12 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
         total_qabul = stuff.total_qabul
         context["total_likes"] = total_qabul
         return context
-class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, UpdateView):
     model = TaskManager
     template_name = 'task_edit.html'
     form_class = AddForm
     success_url = reverse_lazy('task_list')
-    
+    success_message = "Topshiriq muafaqiyatli yangilandi"
     def form_valid(self, form):
         form.save()
         return super(TaskUpdateView, self).form_valid(form)
@@ -36,29 +36,31 @@ class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         obj = self.get_object()
         return obj.author == self.request.user
 
-class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, DeleteView):
     model = TaskManager
     template_name = 'task_delete.html'
     success_url = reverse_lazy('task_list')
+    success_message = "Topshiriq muafaqiyatli o`chirildi"
     def test_func(self):
         obj = self.get_object()
         return obj.author == self.request.user
 
-class TaskCreateView(LoginRequiredMixin, FormView):
+class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
     model = TaskManager
     template_name = 'task_new.html'
     form_class = AddForm
     success_url = '/task_my/'
+    success_message = "Topshiriq muafaqiyatli yuborildi"
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.save()
         return super().form_valid(form)
     
-class TaskCommentView(LoginRequiredMixin, CreateView):
+class TaskCommentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Comment
     template_name = 'comment_new.html'
     form_class = AddCommentForm
-
+    success_message = "Muafaqiyatli yuborildi"
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.task_id = self.kwargs['pk']

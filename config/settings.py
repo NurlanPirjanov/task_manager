@@ -122,3 +122,5 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 LOGIN_REDIRECT_URL = 'home_list'
 LOGOUT_REDIRECT_URL = 'home_list'
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

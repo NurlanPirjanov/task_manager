@@ -34,7 +34,7 @@
                     Sarlavha
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Avtor
+                    Faolligi
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Berilgan vaqti
@@ -43,7 +43,7 @@
                     Tugash vaqti
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Kim ushun
+                    Kim uchun
                 </th>
             </tr>
         </thead>
@@ -55,13 +55,17 @@
                     <a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a>
                 </th>
                 <td class="px-6 py-2">
-                    {{ task.author.role_user }} - {{ task.author.first_name | title }} {{ task.author.last_name | title }}
+                    {% if task.active %}
+                        Faol
+                    {% else %}
+                        Tugallangan
+                    {% endif %}
                 </td>
                 <td class="px-6 py-2">
-                    {{ task.ot_date|date:"d M Y" }}-yil {{ task.do_date|time:"H:i" }}
+                    {{ task.ot_date|date:"d.m.Y" }} {{ task.do_date|time:"H:i" }}
                 </td>
                 <td class="px-6 py-2">
-                    {{ task.do_date|date:"d M Y" }}-yil {{ task.do_date|time:"H:i" }}
+                    {{ task.do_date|date:"d.m.Y" }} {{ task.do_date|time:"H:i" }}
                 </td>
                 <td class="px-6 py-2">
                     {{ task.role_user }}
