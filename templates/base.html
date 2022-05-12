@@ -16,8 +16,9 @@
         <script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
         {% include 'comp/style.html' %}
 </head>
-<body class="h-screen  bg-gray-50 min-w-full dark:bg-gray-600 ">
-  <div class="h-fit relative ">
+<body class=" bg-gray-50 dark:bg-gray-600 ">
+  <div class="h-min">
+  <div class="relative ">
   {% include 'comp/menu.html' %}
 
   {% if messages %}
@@ -37,7 +38,8 @@
       {% endblock content %}
     </div>
   </div>
-  <div class="inset-x-0 bottom-0  ">
+</div>
+  <div class="inset-x-0  ">
     {% include 'comp/footer.html' %}
   </div>
 </body>
