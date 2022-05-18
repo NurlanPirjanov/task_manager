@@ -4,6 +4,10 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 from accounts.models import CustomUser
 from accounts.models import RoleUser
+
+
+# def user_directory_path(instance, filename):
+#     return 'post'
 class TaskManager(models.Model):
     role_user = models.ForeignKey(RoleUser, on_delete=models.CASCADE, verbose_name="Topshiriq kimlar uchun?")
     author = models.ForeignKey(

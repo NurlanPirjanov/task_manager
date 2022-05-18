@@ -12,4 +12,3 @@ urlpatterns = [
     path('api/v1/tasklist/', TaskListAPIView.as_view()),
     path('api/v1/userlist/', UserListAPIView.as_view()),
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
