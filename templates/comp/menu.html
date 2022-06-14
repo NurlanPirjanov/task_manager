@@ -11,7 +11,6 @@
         <img class="w-8 h-8 rounded-full" src="{{ request.user.avatar.url }}" alt="user photo">
         {% endif %}
       </button>
-      <span class="dark:text-gray-50">{{request.user.last_name|title }} {{request.user.first_name|title }}</span>
       <!-- Dropdown menu -->
       <div class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown">
         <div class="py-3 px-4">

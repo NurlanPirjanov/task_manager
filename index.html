@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>dd</title>
+</head>
+<body>
+    <script async src="https://telegram.org/js/telegram-widget.js?19" data-telegram-login="nurdemo_bot" data-size="medium" data-onauth="onTelegramAuth(user)" data-request-access="write"></script>
+<script type="text/javascript">
+  function onTelegramAuth(user) {
+    alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
+  }
+</script>
+</body>
+</html>

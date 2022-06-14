@@ -19,9 +19,15 @@ INSTALLED_APPS = [
     'task',
     'accounts',
     'home',
-
-
+    'private_storage',
 ]
+
+PRIVATE_STORAGE_ROOT = os.path.join(BASE_DIR, 'p_media')
+PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_authenticated'
+# PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_authenticated'
+# PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_staff'
+# PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_superuser'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -113,7 +119,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

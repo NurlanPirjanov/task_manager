@@ -1,3 +1,4 @@
+from django.views.generic.base import TemplateView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView
@@ -82,3 +83,6 @@ from .serializers import TaskAPIListSerializer
 class TaskListAPIView(generics.ListAPIView):
     queryset = TaskManager.objects.all()
     serializer_class = TaskAPIListSerializer
+
+
+
