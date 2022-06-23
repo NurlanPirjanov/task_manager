@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bx)wx#k^k^3d%-5-0n)bt9(ez9v=humrii^c!%%066(ub5k5+a'
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -119,7 +119,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

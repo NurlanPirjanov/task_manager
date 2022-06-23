@@ -14,3 +14,5 @@ urlpatterns = [
     path('api/v1/userlist/', UserListAPIView.as_view()),
     path('p_media/', include(private_storage.urls)),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
