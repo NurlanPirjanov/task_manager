@@ -12,5 +12,6 @@ urlpatterns = [
     path('', TaskMyListView.as_view(), name='task_list'),
     path('n/', TaskMyNewListView.as_view(), name='task_new_list'),
     path('like/<int:pk>', LikeView, name="like_post"),
+    # path('my-task/', TaskOutputView.as_view(), name="my-task-list"),
 ]
 

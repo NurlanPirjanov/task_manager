@@ -1,19 +1,25 @@
 from django.views.generic.base import TemplateView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView, FormView
 from django.urls import reverse_lazy
 from .models import *
 from django.http import HttpResponseRedirect
 from .forms import *
 from django.contrib.messages.views import SuccessMessageMixin
-class TaskMyListView(LoginRequiredMixin, ListView):
-    model = TaskManager
-    template_name = 'task_my.html'
 class TaskMyNewListView(LoginRequiredMixin, ListView):
-    model = TaskManager
-    template_name = 'task_my_new.html'
+    """Kelgen Tapsirmalar"""
+    context_object_name = 'task_list'
+    template_name = "task_my_new.html"
+    def get_queryset(self):
+        return TaskManager.objects.filter(active=True, role_user=self.request.user.role_user.id)
+class TaskMyListView(LoginRequiredMixin, ListView):
+    """Jiberilgen tapsirmalar"""
+    context_object_name = 'task_list'
+    template_name = "task_my.html"
+    def get_queryset(self):
+        return TaskManager.objects.filter(author=self.request.user.id)
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = TaskManager
@@ -73,16 +79,6 @@ def LikeView(request,pk):
     task = get_object_or_404(TaskManager, id=request.POST.get('object_id'))
     task.task_qabul.add(request.user.id)
     return HttpResponseRedirect(reverse('task_detail', args=[str(pk)]))
-
-
-
-from rest_framework import generics
-from .serializers import TaskAPIListSerializer
-
-#API-DRF
-class TaskListAPIView(generics.ListAPIView):
-    queryset = TaskManager.objects.all()
-    serializer_class = TaskAPIListSerializer
 
 
 

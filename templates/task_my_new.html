@@ -48,8 +48,7 @@
             </tr>
         </thead>
         <tbody>
-    {% for task in object_list %}
-        {% if task.role_user.id == request.user.role_user.id and task.active%}
+    {% for task in task_list %}
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-2 font-bold text-blue-700 text-gray-900 dark:text-white whitespace-nowrap">
                     <a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a>
@@ -67,7 +66,6 @@
                     <a class="text-blue-500 font-bold" href="{{ task.file.url }}">Fayl</a>
                 </td>
             </tr>
-            {% endif %}
     {% endfor %}
     </tbody>
     </table>

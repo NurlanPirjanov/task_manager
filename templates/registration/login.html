@@ -1,4 +1,4 @@
-
+{% load static %}
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html>
@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Saytga kirish</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css">
+    <link rel="stylesheet" href="{% static "css/output.css" %}">
     <script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
 
 </head>
@@ -15,7 +14,7 @@
   <div class=" items-center min-h-screen w-screen flex-col flex column">
     <div class="w-[25rem]">
       <div class="items-center flex-col flex column text-center font-bold py-5">
-        <img class="" src="https://www.kindpng.com/picc/b/302-3024204_project-icon-png.png" height="120" width="120">
+        <img class="" src="/static/img/logo.png" height="120" width="120">
         Task Management System
       </div>
       <div class="bg-white border-t shadow-xl rounded-lg border-blue-600  text-gray-800 px-3 ">
@@ -55,7 +54,7 @@
           <!-- Submit button -->
           <button
             type="submit"
-            class="inline-block px-7 py-3 bg-green-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full mb-10"
+            class="inline-block px-7 py-3 bg-blue-700 text-white font-medium text-sm leading-snug uppercase rounded shadow-md  hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full mb-10"
             data-mdb-ripple="true"
             data-mdb-ripple-color="light"
           >

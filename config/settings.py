@@ -3,7 +3,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bx)wx#k^k^3d%-5-0n)bt9(ez9v=humrii^c!%%066(ub5k5+a'
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['task.nurlan.uz', 'localhost']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -12,7 +12,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'rest_framework',
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',

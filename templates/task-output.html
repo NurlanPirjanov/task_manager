@@ -3,11 +3,7 @@
 {% block title %}Topshiriqlar{% endblock title %}
 
 {% block content %}
-<div>
-</div>
-
-
-<nav class="flex py-2 mb-3 px-5 text-gray-700 rounded-md bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
+<nav class="flex py-2 mb-3 px-5 text-gray-700 rounded-lg bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
   <ol class="inline-flex items-center space-x-1 md:space-x-3">
     <li class="inline-flex items-center">
       <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
@@ -24,20 +20,21 @@
     <li aria-current="page">
       <div class="flex items-center">
         <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-        <span class="ml-1 text-sm font-medium text-gray-400 md:ml-2 dark:text-gray-500">Mening topshiriqlarim</span>
+        <span class="ml-1 text-sm font-medium text-gray-400 md:ml-2 dark:text-gray-500">Kelgan topshiriqlarim</span>
       </div>
     </li>
   </ol>
 </nav>
-<div class="relative shadow-md overflow-x-auto shadow-sm sm:rounded-md mx-2">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400  ">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+
+<div class="relative overflow-x-auto shadow-sm sm:rounded-xl">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     Sarlavha
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Faolligi
+                    Avtor
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Berilgan vaqti
@@ -46,33 +43,31 @@
                     Tugash vaqti
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Kim uchun
+                    Fayl
                 </th>
             </tr>
         </thead>
         <tbody>
     {% for task in task_list %}
+        {% if task.role_user.id == request.user.role_user.id %}
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-2 font-medium text-blue-900 dark:text-white whitespace-nowrap">
+                <th scope="row" class="px-6 py-2 font-bold text-blue-700 text-gray-900 dark:text-white whitespace-nowrap">
                     <a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a>
                 </th>
                 <td class="px-6 py-2">
-                    {% if task.active %}
-                        Faol
-                    {% else %}
-                        Tugallangan
-                    {% endif %}
+                    {{ task.author.first_name | title }} {{ task.author.last_name | title }}
                 </td>
                 <td class="px-6 py-2">
-                    {{ task.ot_date|date:"d.m.Y" }} {{ task.do_date|time:"H:i" }}
+                    {{ task.ot_date|date:"d.m.Y" }} soat:{{ task.ot_date|time:"H:i" }}
                 </td>
                 <td class="px-6 py-2">
-                    {{ task.do_date|date:"d.m.Y" }} {{ task.do_date|time:"H:i" }}
+                    {{ task.do_date|date:"d.m.Y" }} soat:{{ task.do_date|time:"H:i" }}
                 </td>
                 <td class="px-6 py-2">
-                    {{ task.role_user }}
+                    <a class="text-blue-500 font-bold" href="{{ task.file.url }}">Fayl</a>
                 </td>
             </tr>
+            {% endif %}
     {% endfor %}
     </tbody>
     </table>
