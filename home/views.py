@@ -1,20 +1,17 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count
 from django.views.generic.base import TemplateView
 from accounts.models import CustomUser
 from task.models import TaskManager
+
+
 class HomeListView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
+
     def get_context_data(self, *args, **kwargs):
         context = super(HomeListView, self).get_context_data()
-        user_ad = CustomUser.objects.filter(role_user=1).count()
-        user_km = CustomUser.objects.filter(role_user=2).count()
-        user_dk = CustomUser.objects.filter(role_user=3).count()
-        user_rektor = CustomUser.objects.filter(role_user=4).count()
+        duplicates = CustomUser.objects.values('role_user__short_name').annotate(name_count=Count('role_user__short_name'))
         total_task = TaskManager.objects.all().count()
-        context["user_ad"] = user_ad
-        context["user_km"] = user_km
-        context["user_dk"] = user_dk
-        context["user_rektor"] = user_rektor
+        context["duplicates"] = duplicates
         context["total_task"] = total_task
         return context
-
