@@ -1,49 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Bosh sahifa{% endblock title %}
-
 {% block content %}
-
-<div class="sm:mx-0 md:mx-3 lg:mx-10 xl:mx-15 2xl:mx-20  shadow-lg border-t bg-white rounded-lg overflow-hidden">
-  <div class="py-3 px-5 bg-gray-100">KARSU - statistika</div>
-  <canvas class="p-10 max-h-96" id="chartBar"></canvas>
-</div>
-
-<!-- Required chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<!-- Chart bar -->
-<script>
-  const labelsBarChart = [
-    "Admin",
-    "Rektor",
-    "Kafedra mudiri",
-    "Dekan",
-    "Topshiriqlar",
-  ];
-  const dataBarChart = {
-    labels: labelsBarChart,
-    datasets: [
-      {
-        label: "Tashkilot statistikasi",
-        backgroundColor: "hsl(252, 82.9%, 67.8%)",
-        borderColor: "hsl(252, 82.9%, 67.8%)",
-        data: [{{ user_ad }}, {{ user_rektor }}, {{ user_km }}, {{ user_dk }}, {{ total_task }}],
-      },
-    ],
-  };
-
-  const configBarChart = {
-    type: "bar",
-    data: dataBarChart,
-    options: {},
-  };
-
-  var chartBar = new Chart(
-    document.getElementById("chartBar"),
-    configBarChart
-  );
-</script>
-
+    <div class="sm:mx-0 md:mx-3 lg:mx-10 xl:mx-15 2xl:mx-20  shadow-lg border-t bg-white rounded-lg overflow-hidden">
+        <div class="py-3 px-5 bg-gray-100">KARSU - statistika</div>
+        <canvas class="p-10 max-h-96" id="chartBar"></canvas>
+    </div>
+    <!-- Required chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart bar -->
+    <script>
+        const labelsBarChart = [
+            {% for i in duplicates %}
+                "{{ i.role_user__short_name }}",
+            {% endfor %}
+            "Jami topshiriqlar",
+        ];
+        const dataBarChart = {
+            labels: labelsBarChart,
+            datasets: [
+                {
+                    label: "Tashkilot statistikasi",
+                    backgroundColor: "hsl(252, 82.9%, 67.8%)",
+                    borderColor: "hsl(252, 82.9%, 67.8%)",
+                    data: [
+                        {% for i in duplicates %}
+                        {{ i.name_count }},
+                        {% endfor %}{{ total_task }},],
+                },
+            ],
+        };
+        const configBarChart = {
+            type: "bar",
+            data: dataBarChart,
+            options: {},
+        };
+        var chartBar = new Chart(
+            document.getElementById("chartBar"),
+            configBarChart
+        );
+    </script>
 {% endblock content %}
